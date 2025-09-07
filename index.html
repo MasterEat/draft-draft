@@ -1,1 +1,204 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hidden Pearl Dafnis</title>
+<style>
+:root{
+  --brand:#492FDE;
+  --txt:#111;
+  --bg:#fff;
+  --muted:#666;
+  --radius:16px;
+  --container:1100px;
+}
+/* reset μινιμαλιστικό */
+*{box-sizing:border-box} body{margin:0;font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto}
+img{max-width:100%;display:block} a{text-decoration:none;color:inherit}
 
+/* Header */
+header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(6px);transition:background-color .25s}
+header .in{max-width:var(--container);margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+header a.logo{font-weight:800}
+nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+.hamb{display:none;border:0;background:transparent;cursor:pointer}
+.hamb span{display:block;width:22px;height:2px;background:#111;margin:5px 0;border-radius:2px}
+.scrolled header{background:rgba(73,47,222,.9)}
+.scrolled header a, .scrolled .hamb span{color:#fff;background:#fff}
+
+/* Drawer (mobile menu) */
+.drawer{position:fixed;inset:0;pointer-events:none}
+.drawer .overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .25s}
+.drawer .panel{position:absolute;inset:0 auto 0 0;width:300px;background:#fff;transform:translateX(-100%);transition:transform .25s;display:flex;flex-direction:column;padding:16px}
+.drawer.open{pointer-events:auto}
+.drawer.open .overlay{opacity:1}
+.drawer.open .panel{transform:translateX(0)}
+.drawer nav ul{flex-direction:column;gap:8px}
+.drawer .bottom{margin-top:auto;display:grid;gap:12px}
+.drawer .social{display:flex;gap:10px}
+.drawer .social a{width:36px;height:36px;border-radius:50%;background:#f2f2f7;display:inline-block}
+.drawer .social a:hover{filter:brightness(.95)}
+
+/* Hero */
+.hero{position:relative;min-height:70vh;display:grid;place-items:center;color:#fff}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.25))}
+.hero > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .content{position:relative;z-index:1;max-width:var(--container);padding:24px}
+.hero h1{font-size:clamp(28px,4vw,44px);margin:0 0 10px;text-shadow:0 6px 18px rgba(0,0,0,.35)}
+.hero p{margin:0 0 16px;opacity:.9}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:12px;background:#fff;color:var(--brand);font-weight:700;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.btn:hover{transform:translateY(-1px)}
+
+/* Sections */
+.section{padding:48px 16px}
+.in{max-width:var(--container);margin:auto}
+.grid{display:grid;gap:16px}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.card{border:1px solid #eee;border-radius:var(--radius);overflow:hidden;background:#fff}
+.card .p{padding:12px}
+
+/* Footer */
+footer{padding:32px 16px;border-top:1px solid #eee;color:#444}
+
+/* Responsive */
+@media (max-width: 900px){
+  nav{display:none}
+  .hamb{display:block}
+  .grid.cols-3{grid-template-columns:1fr 1fr}
+}
+@media (max-width: 600px){
+  .grid.cols-3{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="in">
+    <a class="logo" href="/">Hidden&nbsp;Pearl&nbsp;Dafnis</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#about">Σχετικά</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#location">Τοποθεσία</a></li>
+        <li><a href="#booking">Κράτηση</a></li>
+      </ul>
+    </nav>
+    <button class="hamb" aria-label="Μενού" aria-controls="drawer" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- DRAWER -->
+<div id="drawer" class="drawer" aria-hidden="true">
+  <div class="overlay" data-close></div>
+  <aside class="panel" role="dialog" aria-modal="true">
+    <nav aria-label="Mobile">
+      <ul>
+        <li><a href="#about" data-close>Σχετικά</a></li>
+        <li><a href="#gallery" data-close>Gallery</a></li>
+        <li><a href="#location" data-close>Τοποθεσία</a></li>
+        <li><a href="#booking" data-close>Κράτηση</a></li>
+      </ul>
+    </nav>
+    <div class="bottom">
+      <a href="mailto:info@example.com">info@example.com</a>
+      <div class="social">
+        <a href="https://facebook.com" aria-label="Facebook"></a>
+        <a href="https://instagram.com" aria-label="Instagram"></a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="hero.jpg" alt="Hidden Pearl Dafnis hero" />
+  <div class="content">
+    <h1>Ένα κρυφό μαργαριτάρι στην Αθήνα</h1>
+    <p>Μοντέρνο, φωτεινό boutique apartment με προσεγμένο design.</p>
+    <a class="btn" href="#booking">Κλείσε Διαμονή</a>
+  </div>
+</section>
+
+<!-- SECTIONS -->
+<section id="about" class="section">
+  <div class="in">
+    <h2>Σχετικά</h2>
+    <p class="muted">Καθαρό, απλό, έτοιμο για περιεχόμενο.</p>
+  </div>
+</section>
+
+<section id="gallery" class="section">
+  <div class="in">
+    <h2>Gallery</h2>
+    <div class="grid cols-3">
+      <div class="card"><img src="g1.jpg" alt=""><div class="p">Λεζάντα</div></div>
+      <div class="card"><img src="g2.jpg" alt=""><div class="p">Λεζάντα</div></div>
+      <div class="card"><img src="g3.jpg" alt=""><div class="p">Λεζάντα</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="location" class="section">
+  <div class="in">
+    <h2>Τοποθεσία</h2>
+    <p>Πρόσθεσε χάρτη/οδηγίες.</p>
+  </div>
+</section>
+
+<section id="booking" class="section">
+  <div class="in">
+    <h2>Κράτηση</h2>
+    <p>Σύνδεσε το εξωτερικό booking link σου.</p>
+    <a class="btn" href="https://example.com/booking" target="_blank" rel="noopener">Book Now</a>
+  </div>
+</section>
+
+<footer>
+  <div class="in">© Hidden Pearl Dafnis</div>
+</footer>
+
+<script>
+(function(){
+  // header scroll effect
+  const onScroll = () => {
+    const scrolled = (window.scrollY||document.documentElement.scrollTop) > 10;
+    document.body.classList.toggle('scrolled', scrolled);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // mobile drawer
+  const drawer = document.getElementById('drawer');
+  const hamb = document.querySelector('.hamb');
+  if (drawer && hamb){
+    const open = () => {
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden','false');
+      hamb.setAttribute('aria-expanded','true');
+      document.body.style.overflow='hidden';
+    };
+    const close = () => {
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden','true');
+      hamb.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+    };
+    hamb.addEventListener('click', () => {
+      drawer.classList.contains('open') ? close() : open();
+    });
+    drawer.addEventListener('click', (e) => {
+      if (e.target.closest('[data-close]')) close();
+      if (e.target.classList.contains('overlay')) close();
+    });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && drawer.classList.contains('open')) close(); });
+    window.addEventListener('resize', ()=>{ if(window.innerWidth>=768) close(); });
+  }
+})();
+</script>
+</body>
+</html>
